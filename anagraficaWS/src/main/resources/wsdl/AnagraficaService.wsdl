@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:ns1="http://org.apache.axis2/xsd"
+                  xmlns:ns="http://ws.anagrafica.mc.org"
+                  xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+                  xmlns:ax21="http://model.ws.anagrafica.mc.org/xsd"
+                  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                  xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+                  targetNamespace="http://ws.anagrafica.mc.org">
+   <wsdl:types>
+      <xs:schema xmlns:ax22="http://model.ws.anagrafica.mc.org/xsd"
+                 attributeFormDefault="qualified"
+                 elementFormDefault="qualified"
+                 targetNamespace="http://ws.anagrafica.mc.org">
+         <xs:import namespace="http://model.ws.anagrafica.mc.org/xsd"/>
+         <xs:element name="findAnagrafica">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0"
+                              name="anagraficaRequest"
+                              nillable="true"
+                              type="ax21:AnagraficaRequest"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="findAnagraficaResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0"
+                              name="return"
+                              nillable="true"
+                              type="ax21:AnagraficaResponse"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+      </xs:schema>
+      <xs:schema attributeFormDefault="qualified"
+                 elementFormDefault="qualified"
+                 targetNamespace="http://model.ws.anagrafica.mc.org/xsd">
+         <xs:complexType name="AnagraficaRequest">
+            <xs:sequence>
+               <xs:element minOccurs="0"
+                           name="codiceFiscale"
+                           nillable="true"
+                           type="xs:string"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:complexType name="AnagraficaResponse">
+            <xs:sequence>
+               <xs:element minOccurs="0" name="cognome" nillable="true" type="xs:string"/>
+               <xs:element minOccurs="0" name="nome" nillable="true" type="xs:string"/>
+            </xs:sequence>
+         </xs:complexType>
+      </xs:schema>
+   </wsdl:types>
+   <wsdl:message name="findAnagraficaRequest">
+      <wsdl:part name="parameters" element="ns:findAnagrafica"/>
+   </wsdl:message>
+   <wsdl:message name="findAnagraficaResponse">
+      <wsdl:part name="parameters" element="ns:findAnagraficaResponse"/>
+   </wsdl:message>
+   <wsdl:portType name="AnagraficaServicePortType">
+      <wsdl:operation name="findAnagrafica">
+         <wsdl:input message="ns:findAnagraficaRequest" wsaw:Action="urn:findAnagrafica"/>
+         <wsdl:output message="ns:findAnagraficaResponse"
+                      wsaw:Action="urn:findAnagraficaResponse"/>
+      </wsdl:operation>
+   </wsdl:portType>
+   <wsdl:binding name="AnagraficaServiceSoap11Binding"
+                 type="ns:AnagraficaServicePortType">
+      <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+      <wsdl:operation name="findAnagrafica">
+         <soap:operation soapAction="urn:findAnagrafica" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+   </wsdl:binding>
+   <wsdl:binding name="AnagraficaServiceSoap12Binding"
+                 type="ns:AnagraficaServicePortType">
+      <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+      <wsdl:operation name="findAnagrafica">
+         <soap12:operation soapAction="urn:findAnagrafica" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+   </wsdl:binding>
+   <wsdl:binding name="AnagraficaServiceHttpBinding" type="ns:AnagraficaServicePortType">
+      <http:binding verb="POST"/>
+      <wsdl:operation name="findAnagrafica">
+         <http:operation location="findAnagrafica"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="parameters"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="parameters"/>
+         </wsdl:output>
+      </wsdl:operation>
+   </wsdl:binding>
+   <wsdl:service name="AnagraficaService">
+      <wsdl:port name="AnagraficaServiceHttpSoap11Endpoint"
+                 binding="ns:AnagraficaServiceSoap11Binding">
+         <soap:address location="http://localhost:8080/axis2/services/AnagraficaService"/>
+      </wsdl:port>
+      <wsdl:port name="AnagraficaServiceHttpSoap12Endpoint"
+                 binding="ns:AnagraficaServiceSoap12Binding">
+         <soap12:address location="http://localhost:8080/axis2/services/AnagraficaService"/>
+      </wsdl:port>
+      <wsdl:port name="AnagraficaServiceHttpEndpoint"
+                 binding="ns:AnagraficaServiceHttpBinding">
+         <http:address location="http://localhost:8080/axis2/services/AnagraficaService"/>
+      </wsdl:port>
+   </wsdl:service>
+</wsdl:definitions>
