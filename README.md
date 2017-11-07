@@ -1,4 +1,6 @@
-WebServices Soap Client-Server Architecture ; developed with WSO2 Developer Studio and Axis2 Plug-in.
+# WebServices Soap Client-Server Architecture
+
+Developed with WSO2 Developer Studio and Axis2 Plug-in ; Top-down approach (Java generated from WSDL).
 <br><br>
 Server target : WSO2Carbon.
 ____________________________________
