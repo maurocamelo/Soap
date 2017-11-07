@@ -1,4 +1,4 @@
-# WebServices Soap Client-Server Architecture
+# Example of WebServices Soap Client-Server Architecture
 
 Used technology : WSO2 Developer Studio and Axis2 Plug-in ; Top-down approach (Java generated from WSDL).
 <br><br>
