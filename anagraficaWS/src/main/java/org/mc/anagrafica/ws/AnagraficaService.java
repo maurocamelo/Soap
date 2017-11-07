@@ -9,9 +9,9 @@ public AnagraficaResponse findAnagrafica(AnagraficaRequest anagraficaRequest){
 		
 		AnagraficaResponse anagraficaResponse = new AnagraficaResponse();
 		
-		anagraficaResponse.setNome("Name");
+		anagraficaResponse.setNome("Ronald");
 		
-		anagraficaResponse.setCognome("Surname");
+		anagraficaResponse.setCognome("Shaffot");
 		
 		return anagraficaResponse;
 
