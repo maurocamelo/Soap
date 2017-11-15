@@ -1,4 +1,6 @@
-# Example of WebServices Soap Client-Server Architecture
+# WebServices Soap Client-Server Architecture
+
+Type : Java EE 7 example
 
 Used technology : <b>WSO2 Developer Studio and Axis2 Plug-in, Top-down approach (Java generated from WSDL), Git, Java EE 7, Server target : WSO2Carbon.</b>
 <br><br>
